@@ -1,3 +1,43 @@
-.submissions {
-  background: red;
+.submissions .submission {
+  display: block;
+
+  margin-bottom: 1rem;
+  box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.3);
+  border-radius: 6px;
+  padding: 1rem;
+
+  cursor: pointer;
+
+  transition: margin .5s;
+  &.preferred {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    background: rgba(0,0,0,.05);
+
+    .state .preferred {
+      display: block;
+    }
+  }
+
+  .state > * {
+    display: none;
+  }
+
+  > :last-child { margin-bottom: 0; }
+  > :first-child { margin-top: 0; }
+
+  .headline {
+    display: flex;
+    .title {
+      flex-grow: 1;
+    }
+  }
+
+  .description {
+    display: none;
+  }
+
+  .track {
+    color: var(--track-color);
+  }
 }

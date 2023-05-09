@@ -1,1 +1,3 @@
-console.log('pretalx_halfnarp')
+$('.submissions .submission').on('click', function () {
+    $(this).toggleClass('preferred');
+})

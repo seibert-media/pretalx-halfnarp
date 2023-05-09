@@ -30,12 +30,19 @@
     <div class="submissions">
         {% for submission in submissions %}
 
-            <div class="submission">
-                <h2>{{submission.title}}</h2>
-                <span class="track">{{submission.track}}</span>
+            <div class="submission" style="--track-color: {{submission.track.color}}" data-id="{{submission.id}}">
+                <div class="headline">
+                    <h2 class="title">{{submission.title}}</h2>
+                    <div class="state">
+                        <div class="preferred" title="{% translate "Preferred" %}">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
                 <p class="abstract">{{submission.abstract}}</p>
-                <p class="description">{{submission.description}}</p>
                 <p class="speakers">{{submission.display_speaker_names}}</p>
+                <a href="{{submission.urls.review}}" target="_blank">{% translate "More info" %}</a>
+                <div class="track">{{submission.track}}</div>
             </div>
 
             {% empty %}
