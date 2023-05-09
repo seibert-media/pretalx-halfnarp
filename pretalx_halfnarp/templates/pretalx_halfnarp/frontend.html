@@ -1,0 +1,51 @@
+{% extends "common/base.html" %}
+{% load i18n %}
+{% load compress %}
+{% load static %}
+
+{% block title %}{% translate "Events" %}{% endblock %}
+
+{% block custom_header %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "pretalx_halfnarp/frontend.scss" %}"/>
+    {% endcompress %}
+    {% compress js %}
+        <script defer src="{% static "pretalx_halfnarp/frontend.js" %}"></script>
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    <h1>{% translate "Presentation Preference" %}</h1>
+    <p>
+        {% blocktranslate trimmed %}
+            Thank you for helping us plan a better program for the upcoming conference.
+            <br><br>
+            In the list below you will find all the talks we have accepted for the conference.
+            By marking the talks that seem to be the most interesting for you personally, you will help us to choose rooms
+            for the talks that match the interest. At the same time we try to optimize that as few as possible of your
+            favorite talks take place at the same time.
+        {% endblocktranslate %}
+    </p>
+
+    <div class="submissions">
+        {% for submission in submissions %}
+
+            <div class="submission">
+                <h2>{{submission.title}}</h2>
+                <span class="track">{{submission.track}}</span>
+                <p class="abstract">{{submission.abstract}}</p>
+                <p class="description">{{submission.description}}</p>
+                <p class="speakers">{{submission.display_speaker_names}}</p>
+            </div>
+
+            {% empty %}
+
+            <p class="no-submissions">
+                {% blocktranslate trimmed %}
+                    This conference does not have any submissions yet.
+                {% endblocktranslate %}
+            </p>
+
+        {% endfor %}
+    </div>
+{% endblock %}
