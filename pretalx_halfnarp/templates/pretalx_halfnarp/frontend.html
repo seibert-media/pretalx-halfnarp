@@ -34,10 +34,8 @@
             <div class="submission{% if submission.id in preferred_talks %} preferred{% endif %}" style="--track-color: {{submission.track.color}}" data-id="{{submission.id}}">
                 <div class="headline">
                     <h2 class="title">{{submission.title}}</h2>
-                    <div class="state">
-                        <div class="preferred" title="{% translate "Preferred" %}">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                        </div>
+                    <div class="preferred-icon" title="{% translate "Preferred" %}">
+                        <i class="fa fa-star" aria-hidden="true"></i>
                     </div>
                 </div>
                 <p class="abstract">{{submission.abstract}}</p>
