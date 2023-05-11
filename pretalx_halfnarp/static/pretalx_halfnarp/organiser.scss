@@ -1,0 +1,11 @@
+.submissions .submission {
+
+  .headline, .footer {
+    display: flex;
+
+    .title, .track {
+      flex-grow: 1;
+    }
+  }
+  
+}

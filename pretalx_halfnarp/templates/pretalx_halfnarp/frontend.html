@@ -40,8 +40,11 @@
                 </div>
                 <p class="abstract">{{submission.abstract}}</p>
                 <p class="speakers">{{submission.display_speaker_names}}</p>
-                <a href="{{submission.urls.review}}" target="_blank">{% translate "More info" %}</a>
-                <div class="track">{{submission.track}}</div>
+
+                <div class="footer">
+                    <div class="track">Track: <span class="track">{{submission.track}}</span></div>
+                    <a href="{{submission.urls.review}}" target="_blank">{% translate "More info" %}</a>
+                </div>
             </div>
 
             {% empty %}
