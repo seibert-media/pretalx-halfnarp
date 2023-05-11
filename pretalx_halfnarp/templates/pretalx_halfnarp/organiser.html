@@ -13,34 +13,30 @@
 {% endblock %}
 
 {% block content %}
-<div class="row align-items-start">
-    <div class="col">
-        <h2>{% translate "Most Preferred Submissions" %}</h2>
-        <p>
-            {% blocktranslate trimmed %}
-            The following Submissions have been voted the most (in descending order).
-            {% endblocktranslate %}
-        </p>
-        <div class="submissions">
-            {% for info in most_preferred_submissions %}
-                <div class="submission card mb-3">
-                    <div class="card-body">
-                        <div class="card-title headline">
-                            <h2 class="title">{{info.submission.title}}</h2>
-                            <span class="counter">Votes: {{info.count}}/{{num_preferences}}</span>
-                        </div>
-                        <p class="speakers">{{info.submission.display_speaker_names}}</p>
-                        <div class="footer">
-                            <div class="track">Track: <span class="track">{{info.submission.track}}</span></div>
-                            <a href="{{info.submission.orga_urls.base}}" target="_blank">{% translate "More info" %}</a>
-                        </div>
-                    </div>
+<div class="title">
+    <h2>{% translate "Most Preferred Submissions" %}</h2>
+    <a class="button" href="" target="_blank">Link to Vote-Page</a>
+</div>
+<p>
+    {% blocktranslate trimmed %}
+    The following Submissions have been voted the most (in descending order).
+    {% endblocktranslate %}
+</p>
+<div class="submissions">
+    {% for info in most_preferred_submissions %}
+        <div class="submission card mb-3">
+            <div class="card-body">
+                <div class="card-title headline">
+                    <h2 class="title">{{info.submission.title}}</h2>
+                    <span class="counter">Votes: {{info.count}}/{{num_preferences}}</span>
                 </div>
-            {% endfor %}
+                <p class="speakers">{{info.submission.display_speaker_names}}</p>
+                <div class="footer">
+                    <div class="track">Track: <span class="track">{{info.submission.track}}</span></div>
+                    <a href="{{info.submission.orga_urls.base}}" target="_blank">{% translate "More info" %}</a>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="col">
-        <h2>{% translate "Most Correlated Talks" %}</h2>
-    </div>
+    {% endfor %}
 </div>
 {% endblock %}
