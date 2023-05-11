@@ -1,5 +1,7 @@
 import secrets
+from datetime import timedelta
 
+import jsonschema
 from django.http import JsonResponse
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -18,15 +20,19 @@ class FrontendMyPreferencesApi(EventPageMixin, APIView):
         if not halfnarp_hash:
             return Response(status=404)
 
-        preferences = get_preferences(halfnarp_hash)
+        preferences = Preference.objects.get(hash=halfnarp_hash)
         if not preferences:
             return Response(status=404)
 
-        return JsonResponse(preferences, safe=False)
+        return JsonResponse({
+            'preferred_submissions': preferences.preferred_submission_ids
+        }, safe=False)
 
     def post(self, request, event, *args, **kwargs):
-        if not preferences_data_is_valid(request.data):
-            return Response(status=400)
+        try:
+            validate_preferences_data(request.data)
+        except jsonschema.ValidationError as e:
+            return Response(status=400, data=str(e))
 
         halfnarp_hash = self.request.COOKIES.get(HASH_COOKIE, None)
         if halfnarp_hash:
@@ -36,25 +42,30 @@ class FrontendMyPreferencesApi(EventPageMixin, APIView):
             halfnarp_hash = create_preferences(request.data)
 
             r = Response()
-            r.set_cookie(HASH_COOKIE, halfnarp_hash, httponly=True, secure=True, samesite="Strict")
+            r.set_cookie(HASH_COOKIE, halfnarp_hash, httponly=True, secure=True, samesite="Strict",
+                         max_age=timedelta(days=365).total_seconds())
             return r
 
 
-def preferences_data_is_valid(request_data):
-    return type(request_data) == list and all(type(i) == int for i in request_data)
-
-
-def get_preferences(halfnarp_hash):
-    preference = Preference.objects.get(hash=halfnarp_hash)
-    if not preference:
-        return None
-
-    return [int(i) for i in preference.preferred_submissions.split(',')]
+def validate_preferences_data(request_data):
+    schema = {
+        "type": "object",
+        "properties": {
+            "preferred_submissions": {
+                "type": "array",
+                "items": {
+                    "type": "number",
+                },
+            },
+        },
+        "required": ["preferred_submissions"]
+    }
+    jsonschema.validate(request_data, schema)
 
 
 def update_preferences(halfnarp_hash, request_data):
     preference = Preference.objects.get(hash=halfnarp_hash)
-    preference.preferred_submissions = ','.join([str(i) for i in request_data])
+    preference.set_preferred_submission_ids(request_data['preferred_submissions'])
     preference.save()
 
 
@@ -62,6 +73,6 @@ def create_preferences(request_data):
     halfnarp_hash = secrets.token_hex(64)
     preference = Preference()
     preference.hash = halfnarp_hash
-    preference.preferred_submissions = ','.join([str(i) for i in request_data])
+    preference.set_preferred_submission_ids(request_data['preferred_submissions'])
     preference.save()
     return halfnarp_hash

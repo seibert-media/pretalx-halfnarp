@@ -1,15 +1,13 @@
 jQuery(function () {
-    const $submissions = $('.submissions .submission');
+    const $submissions = $('.submissions');
     configureCsrf($("[name=csrfmiddlewaretoken]").val());
 
-    $submissions.on('click', function () {
+    $submissions.on('click', '.submission', function () {
         $(this).toggleClass('preferred');
-    }).on('click', deduplicate(savePreferredTalks));
+    }).on('click', '.submission', deduplicate(savePreferredTalks));
 
     function savePreferredTalks() {
-        const preferredTalkIds = $submissions.filter(function () {
-            return $(this).hasClass('preferred')
-        }).map(function () {
+        const preferredTalkIds = $submissions.find('.submission.preferred').map(function () {
             return $(this).data('id')
         }).get();
         console.log('start save', 'preferredTalkIds=', preferredTalkIds)
@@ -17,7 +15,9 @@ jQuery(function () {
         return jQuery.ajax(window.location.href + '/my-preferences', {
             method: 'POST',
             dataType: 'json',
-            data: JSON.stringify(preferredTalkIds),
+            data: JSON.stringify({
+                preferred_submissions: preferredTalkIds
+            }),
             contentType: 'application/json',
         })
     }
