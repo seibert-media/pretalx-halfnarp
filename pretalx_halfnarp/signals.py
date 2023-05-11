@@ -10,11 +10,12 @@ def navbar_info(sender, request, **kwargs):
     url = resolve(request.path_info)
     if not request.user.has_perm('orga.view_submissions', request.event):
         return []
+
     return [{
         'label': _('Halfnarp'),
         'icon': 'thumbs-up',
         'url': reverse('plugins:pretalx_halfnarp:organiser', kwargs={
             'event': request.event.slug,
         }),
-        'active': url.namespace == 'plugins:pretalx_halfnarp' and url.url_name == 'view',
+        'active': url.namespace == 'plugins:pretalx_halfnarp' and url.url_name == 'organiser',
     }]
