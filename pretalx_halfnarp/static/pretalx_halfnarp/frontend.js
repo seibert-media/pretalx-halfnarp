@@ -12,7 +12,7 @@ jQuery(function () {
         }).get();
         console.log('start save', 'preferredTalkIds=', preferredTalkIds)
 
-        return jQuery.ajax(window.location.href + '/my-preferences', {
+        return jQuery.ajax(window.location.href + '/my-preferences/', {
             method: 'POST',
             dataType: 'json',
             data: JSON.stringify({
