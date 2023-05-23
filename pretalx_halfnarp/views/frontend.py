@@ -21,7 +21,7 @@ class FrontendView(EventPageMixin, TemplateView):
         if self.halfnarp_hash:
             return super().get(request, args, kwargs)
         else:
-            self.halfnarp_hash = secrets.token_hex(64)
+            self.halfnarp_hash = secrets.token_hex(32)
             response = super().get(request, args, kwargs)
             response.set_cookie(
                 HASH_COOKIE,
