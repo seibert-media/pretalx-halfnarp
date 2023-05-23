@@ -15,7 +15,8 @@ class PluginApp(AppConfig):
             "also help you avoid overlaps by correlating submissions that are preferred by the same people so "
             "that you can plan them at different times."
             ""
-            "Halfnarp is an anagram of Fahrplan, a not-yet sorted Fahrplan")
+            "Halfnarp is an anagram of Fahrplan, a not-yet sorted Fahrplan"
+        )
         visible = True
         version = "1.0.0"
 

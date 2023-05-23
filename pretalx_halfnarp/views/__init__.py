@@ -1,1 +1,1 @@
-HASH_COOKIE = 'halfnarp_hash'
+HASH_COOKIE = "halfnarp_hash"

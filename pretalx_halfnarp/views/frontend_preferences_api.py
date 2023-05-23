@@ -1,10 +1,10 @@
 import jsonschema
 from django.http import JsonResponse
+from pretalx.cfp.views.event import EventPageMixin
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from pretalx.cfp.views.event import EventPageMixin
 from pretalx_halfnarp.models import Preference
 from pretalx_halfnarp.views import HASH_COOKIE
 
@@ -21,9 +21,9 @@ class FrontendMyPreferencesApi(EventPageMixin, APIView):
         if not preferences:
             return Response(status=404)
 
-        return JsonResponse({
-            'preferred_submissions': preferences.preferred_submission_ids
-        }, safe=False)
+        return JsonResponse(
+            {"preferred_submissions": preferences.preferred_submission_ids}, safe=False
+        )
 
     def post(self, request, event, *args, **kwargs):
         try:
@@ -41,7 +41,7 @@ class FrontendMyPreferencesApi(EventPageMixin, APIView):
             preference = Preference()
             preference.hash = halfnarp_hash
 
-        preference.set_preferred_submission_ids(request.data['preferred_submissions'])
+        preference.set_preferred_submission_ids(request.data["preferred_submissions"])
         preference.save()
 
         return Response(status=204)
@@ -58,6 +58,6 @@ def validate_preferences_data(request_data):
                 },
             },
         },
-        "required": ["preferred_submissions"]
+        "required": ["preferred_submissions"],
     }
     jsonschema.validate(request_data, schema)
