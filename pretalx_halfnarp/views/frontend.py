@@ -27,7 +27,7 @@ class FrontendView(EventPageMixin, TemplateView):
                 self.halfnarp_hash,
                 httponly=True,
                 secure=True,
-                samesite="Strict",
+                samesite="Lax",
                 max_age=timedelta(days=365).total_seconds(),
             )
             return response
