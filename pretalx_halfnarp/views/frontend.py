@@ -17,7 +17,6 @@ class FrontendView(EventPageMixin, TemplateView):
 
     def get(self, request, *args, **kwargs):
         self.halfnarp_hash = self.request.COOKIES.get(HASH_COOKIE, None)
-        print("self.halfnarp_hash", self.halfnarp_hash)
         if self.halfnarp_hash:
             return super().get(request, args, kwargs)
         else:
