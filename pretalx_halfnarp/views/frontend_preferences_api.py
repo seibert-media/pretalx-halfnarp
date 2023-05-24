@@ -17,7 +17,9 @@ class FrontendMyPreferencesApi(EventPageMixin, APIView):
         if not halfnarp_hash:
             return Response(status=404)
 
-        preferences = Preference.objects.get(hash=halfnarp_hash)
+        preferences = Preference.objects.get(
+            hash=halfnarp_hash, event=self.request.event
+        )
         if not preferences:
             return Response(status=404)
 
@@ -36,10 +38,13 @@ class FrontendMyPreferencesApi(EventPageMixin, APIView):
             return Response(400)
 
         try:
-            preference = Preference.objects.get(hash=halfnarp_hash)
+            preference = Preference.objects.get(
+                hash=halfnarp_hash, event=self.request.event
+            )
         except Preference.DoesNotExist:
             preference = Preference()
             preference.hash = halfnarp_hash
+            preference.event = self.request.event
 
         preference.set_preferred_submission_ids(request.data["preferred_submissions"])
         preference.save()

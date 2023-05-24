@@ -44,7 +44,9 @@ class FrontendView(EventPageMixin, TemplateView):
     @context
     def preferred_talks(self):
         try:
-            preference = Preference.objects.get(hash=self.halfnarp_hash)
+            preference = Preference.objects.get(
+                hash=self.halfnarp_hash, event=self.request.event
+            )
             return list(preference.preferred_submission_ids)
         except Preference.DoesNotExist:
             return []

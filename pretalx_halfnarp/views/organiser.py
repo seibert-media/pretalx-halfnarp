@@ -19,17 +19,17 @@ class OrganiserView(EventPermissionRequired, TemplateView):
     @context
     def most_preferred_submissions(self):
         submissions_by_id = {
-            submission.id: submission for submission in Submission.objects.all()
+            submission.id: submission
+            for submission in Submission.objects.filter(event=self.request.event)
         }
         submission_id_counter = Counter()
-        for preference in Preference.objects.all():
+        for preference in Preference.objects.filter(event=self.request.event):
             for submission_id in preference.preferred_submission_ids:
                 submission_id_counter[submission_id] += 1
 
         return [
-            {"submission": submissions_by_id[item[0]], "count": item[1]}
-            for item in submission_id_counter.most_common()
-            if item[0] in submissions_by_id
+            {"submission": submissions_by_id[id], "count": count}
+            for id, count in submission_id_counter.most_common()
         ]
 
     @context
