@@ -17,20 +17,19 @@ class FrontendView(EventPageMixin, TemplateView):
 
     def get(self, request, *args, **kwargs):
         self.halfnarp_hash = self.request.COOKIES.get(HASH_COOKIE, None)
-        if self.halfnarp_hash:
-            return super().get(request, args, kwargs)
-        else:
+        if not self.halfnarp_hash:
             self.halfnarp_hash = secrets.token_hex(32)
-            response = super().get(request, args, kwargs)
-            response.set_cookie(
-                HASH_COOKIE,
-                self.halfnarp_hash,
-                httponly=True,
-                secure=True,
-                samesite="Lax",
-                max_age=timedelta(days=365).total_seconds(),
-            )
-            return response
+
+        response = super().get(request, args, kwargs)
+        response.set_cookie(
+            HASH_COOKIE,
+            self.halfnarp_hash,
+            httponly=True,
+            secure=True,
+            samesite="Lax",
+            max_age=timedelta(days=365).total_seconds(),
+        )
+        return response
 
     @context
     def submissions(self):
