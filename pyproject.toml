@@ -1,0 +1,50 @@
+[project]
+name = "pretalx-halfnarp"
+dynamic = ["version"]
+description = """
+Pretalx-Halfnarp is a Plugin that helps you to estimate the interest in
+your submissions and plan room-sizes accordingly by scheduling the most
+requested submissions into the larger rooms. It can also help you avoid
+overlaps by correlating submissions that are preferred by the same
+people so that you can plan them at different times.
+
+Halfnarp is an anagram of Fahrplan, a not-yet sorted Fahrplan"""
+readme = "README.rst"
+license = {text = "Apache Software License"}
+keywords = ["pretalx"]
+authors = [
+    {name = "Peter Körner", email = "pkoerner@seibert-media.net"},
+    {name = "Franziska Kunsmann", email = "fkunsmann@seibert-media.net"},
+]
+maintainers = [
+    {name = "Franziska Kunsmann", email = "fkunsmann@seibert-media.net"},
+]
+
+dependencies = [
+]
+
+[project.entry-points."pretalx.plugin"]
+pretalx_halfnarp = "pretalx_halfnarp:PretalxPluginMeta"
+
+[project.entry-points."distutils.commands"]
+build = "pretalx_plugin_build.build:CustomBuild"
+
+[build-system]
+requires = [
+    "setuptools",
+    "pretalx-plugin-build",
+]
+
+[project.urls]
+homepage = "https://github.com/seibert-media/pretalx-halfnarp"
+repository = "https://github.com/seibert-media/pretalx-halfnarp.git"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = {attr = "pretalx_halfnarp.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["pretalx*"]
+namespaces = false
