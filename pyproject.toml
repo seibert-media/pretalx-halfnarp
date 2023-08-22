@@ -1,6 +1,6 @@
 [project]
 name = "pretalx-halfnarp"
-dynamic = ["version"]
+version = "1.0.0"
 description = """
 Pretalx-Halfnarp is a Plugin that helps you to estimate the interest in
 your submissions and plan room-sizes accordingly by scheduling the most
@@ -41,9 +41,6 @@ repository = "https://github.com/seibert-media/pretalx-halfnarp.git"
 
 [tool.setuptools]
 include-package-data = true
-
-[tool.setuptools.dynamic]
-version = {attr = "pretalx_halfnarp.__version__"}
 
 [tool.setuptools.packages.find]
 include = ["pretalx*"]
