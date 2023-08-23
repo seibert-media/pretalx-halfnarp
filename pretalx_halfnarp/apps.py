@@ -8,7 +8,7 @@ class PluginApp(AppConfig):
 
     class PretalxPluginMeta:
         name = gettext_lazy("Pretalx Halfnarp")
-        author = "Peter Körner"
+        author = "Peter Körner, Franziska Kunsmann"
         description = gettext_lazy(
             "Pretalx-Halfnarp is a Plugin that helps you to estimate the interest in your submissions and plan "
             "room-sizes accordingly by scheduling the most requested submissions into the larger rooms. It can "
@@ -18,7 +18,7 @@ class PluginApp(AppConfig):
             "Halfnarp is an anagram of Fahrplan, a not-yet sorted Fahrplan"
         )
         visible = True
-        version = "1.0.0"
+        version = "1.0.1"
 
     def ready(self):
         from . import signals  # NOQA
