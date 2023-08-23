@@ -21,6 +21,8 @@ maintainers = [
 ]
 
 dependencies = [
+    "jsonschema==4.19.0",
+    "jsonschema-specifications==2023.7.1",
 ]
 
 [project.entry-points."pretalx.plugin"]
