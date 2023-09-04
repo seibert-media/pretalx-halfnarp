@@ -24,7 +24,7 @@
 {% block content %}
     <div class="title">
         <h2>{% translate "Most Preferred Submissions" %}</h2>
-        <a class="btn btn-info" href="{% url "plugins:pretalx_halfnarp:frontend" request.event %}" target="_blank">
+        <a class="btn btn-info" href="{% url "plugins:pretalx_halfnarp:frontend" request.event.slug %}" target="_blank">
             <i class="fa fa-external-link" aria-hidden="true"></i>
             {% translate "Link to Vote-Page" %}
         </a>
