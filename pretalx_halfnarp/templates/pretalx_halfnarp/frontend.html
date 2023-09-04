@@ -22,6 +22,7 @@
             Thank you for helping us plan a better program for the upcoming conference.
         {% endblocktranslate %}
     </p>
+{% if voting_is_enabled %}
     <p>
         {% blocktranslate trimmed %}
             In the list below you will find all the talks we have accepted for the conference.
@@ -59,4 +60,11 @@
 
         {% endfor %}
     </div>
+{% else %}
+    <p>
+        {% blocktranslate trimmed %}
+            The voting period has ended.
+        {% endblocktranslate %}
+    </p>
+{% endif %}
 {% endblock %}

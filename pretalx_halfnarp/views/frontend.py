@@ -2,6 +2,8 @@ import random
 import secrets
 from datetime import timedelta
 
+import pytz
+from django.utils import timezone
 from django.views.generic import TemplateView
 from django_context_decorator import context
 from pretalx.cfp.views.event import EventPageMixin
@@ -50,3 +52,25 @@ class FrontendView(EventPageMixin, TemplateView):
             return list(preference.preferred_submission_ids)
         except Preference.DoesNotExist:
             return []
+
+    @context
+    def voting_is_enabled(self):
+        until = None
+        try:
+            until = self.request.event.settings.halfnarp_allow_voting_until
+        except AttributeError:
+            pass
+        if until is None:
+            if not self.request.event.current_schedule:
+                return True
+        else:
+            until = timezone.datetime.strptime(until, "%Y-%m-%d").astimezone(
+                pytz.timezone(self.request.event.timezone)
+            )
+
+            tz = timezone.activate(pytz.timezone(self.request.event.timezone))
+            now = timezone.localtime()
+
+            if now < until:
+                return True
+        return False
