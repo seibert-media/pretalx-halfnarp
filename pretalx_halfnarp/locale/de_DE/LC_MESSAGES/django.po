@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-23 11:47+0200\n"
+"POT-Creation-Date: 2023-09-04 10:10+0200\n"
 "PO-Revision-Date: 2023-05-23 12:00+0200\n"
 "Last-Translator: Franziska Kunsmann <fkunsmann@seibert-media.net>\n"
 "Language-Team: Videotechnik <videotechnik@seibert-media.net>\n"
@@ -43,6 +43,19 @@ msgstr ""
 "Talks nicht zur gleichen Zeit stattfinden. Halfnarp ist ein Anagramm von "
 "Fahrplan, also ein noch nicht sortierter Fahrplan."
 
+#: forms.py:10
+msgid ""
+"Voting closes at midnight at the selected day. If unset, voting is allowed "
+"until a schedule is released."
+msgstr ""
+"Die Abstimmung schließt um Mitternacht am genannten Tag. Wenn kein Tag "
+"angegeben ist, ist die Abstimmung möglich, bis ein Programm veröffentlicht "
+"wurde."
+
+#: forms.py:13
+msgid "Allow votes until"
+msgstr "Erlaube Abstimmungen bis"
+
 #: signals.py:15
 msgid "Halfnarp"
 msgstr ""
@@ -62,7 +75,7 @@ msgstr ""
 "Danke, dass du uns hilfst, ein besseres Programm für die kommende "
 "Veranstaltung zu erstellen."
 
-#: templates/pretalx_halfnarp/frontend.html:26
+#: templates/pretalx_halfnarp/frontend.html:27
 msgid ""
 "In the list below you will find all the talks we have accepted for the "
 "conference. By marking the talks that seem to be the most interesting for "
@@ -74,28 +87,40 @@ msgstr ""
 "die für dich am interessantesten sind, hilfst du uns, die Räume für die "
 "Einreichungen entsprechend des Interesse zu planen."
 
-#: templates/pretalx_halfnarp/frontend.html:39
+#: templates/pretalx_halfnarp/frontend.html:40
 msgid "Preferred"
 msgstr ""
 
-#: templates/pretalx_halfnarp/frontend.html:48
-#: templates/pretalx_halfnarp/organiser.html:39
+#: templates/pretalx_halfnarp/frontend.html:49
+#: templates/pretalx_halfnarp/organiser.html:66
 msgid "More info"
 msgstr "Mehr Informationen"
 
-#: templates/pretalx_halfnarp/frontend.html:55
+#: templates/pretalx_halfnarp/frontend.html:56
 msgid "This conference does not have any submissions yet."
 msgstr "Diese Veranstaltung hat bisher keine Einreichungen."
 
-#: templates/pretalx_halfnarp/organiser.html:17
+#: templates/pretalx_halfnarp/frontend.html:65
+msgid "The voting period has ended."
+msgstr "Die Abstimmung ist bereits geschlossen."
+
+#: templates/pretalx_halfnarp/organiser.html:26
 msgid "Most Preferred Submissions"
 msgstr "Einreichungen mit den meisten Votes"
 
-#: templates/pretalx_halfnarp/organiser.html:20
+#: templates/pretalx_halfnarp/organiser.html:29
 msgid "Link to Vote-Page"
 msgstr "Link zur Abstimmungs-Seite"
 
-#: templates/pretalx_halfnarp/organiser.html:24
+#: templates/pretalx_halfnarp/organiser.html:35
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: templates/pretalx_halfnarp/organiser.html:45
+msgid "Save"
+msgstr "Speichern"
+
+#: templates/pretalx_halfnarp/organiser.html:51
 msgid ""
 "The following Submissions have been voted the most (in descending order)."
 msgstr ""
