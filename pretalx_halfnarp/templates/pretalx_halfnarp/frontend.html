@@ -22,49 +22,49 @@
             Thank you for helping us plan a better program for the upcoming conference.
         {% endblocktranslate %}
     </p>
-{% if voting_is_enabled %}
-    <p>
-        {% blocktranslate trimmed %}
-            In the list below you will find all the talks we have accepted for the conference.
-            By marking the talks that seem to be the most interesting for you personally, you will help us to choose rooms
-            for the talks that match the interest.
-        {% endblocktranslate %}
-    </p>
+    {% if voting_is_enabled %}
+        <p>
+            {% blocktranslate trimmed %}
+                In the list below you will find all the talks we have accepted for the conference.
+                By marking the talks that seem to be the most interesting for you personally, you will help us to choose rooms
+                for the talks that match the interest.
+            {% endblocktranslate %}
+        </p>
 
-    <div class="submissions">
-        {% for submission in submissions %}
+        <div class="submissions">
+            {% for submission in submissions %}
 
-            <div class="submission{% if submission.id in preferred_talks %} preferred{% endif %}" style="--track-color: {{submission.track.color}}" data-id="{{submission.id}}">
-                <div class="headline">
-                    <h2 class="title">{{submission.title}}</h2>
-                    <div class="preferred-icon" title="{% translate "Preferred" %}">
-                        <i class="fa fa-star" aria-hidden="true"></i>
+                <div class="submission{% if submission.id in preferred_talks %} preferred{% endif %}" style="--track-color: {{submission.track.color}}" data-id="{{submission.id}}">
+                    <div class="headline">
+                        <h2 class="title">{{submission.title}}</h2>
+                        <div class="preferred-icon" title="{% translate "Preferred" %}">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <p class="abstract">{{submission.abstract}}</p>
+                    <p class="speakers">{{submission.display_speaker_names}}</p>
+
+                    <div class="footer">
+                        <div class="track">Track: <span class="track">{{submission.track}}</span></div>
+                        <a href="{{submission.urls.review}}" target="_blank">{% translate "More info" %}</a>
                     </div>
                 </div>
-                <p class="abstract">{{submission.abstract}}</p>
-                <p class="speakers">{{submission.display_speaker_names}}</p>
-
-                <div class="footer">
-                    <div class="track">Track: <span class="track">{{submission.track}}</span></div>
-                    <a href="{{submission.urls.review}}" target="_blank">{% translate "More info" %}</a>
-                </div>
-            </div>
 
             {% empty %}
 
-            <p class="no-submissions">
-                {% blocktranslate trimmed %}
-                    This conference does not have any submissions yet.
-                {% endblocktranslate %}
-            </p>
+                <p class="no-submissions">
+                    {% blocktranslate trimmed %}
+                        This conference does not have any submissions yet.
+                    {% endblocktranslate %}
+                </p>
 
-        {% endfor %}
-    </div>
-{% else %}
-    <p>
-        {% blocktranslate trimmed %}
-            The voting period has ended.
-        {% endblocktranslate %}
-    </p>
-{% endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>
+            {% blocktranslate trimmed %}
+                The voting period has ended.
+            {% endblocktranslate %}
+        </p>
+    {% endif %}
 {% endblock %}
