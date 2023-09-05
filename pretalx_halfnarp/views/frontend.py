@@ -68,7 +68,7 @@ class FrontendView(EventPageMixin, TemplateView):
                 pytz.timezone(self.request.event.timezone)
             )
 
-            tz = timezone.activate(pytz.timezone(self.request.event.timezone))
+            timezone.activate(pytz.timezone(self.request.event.timezone))
             now = timezone.localtime()
 
             if now < until:
