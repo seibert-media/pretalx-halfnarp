@@ -18,7 +18,7 @@ class PluginApp(AppConfig):
             "Halfnarp is an anagram of Fahrplan, a not-yet sorted Fahrplan"
         )
         visible = True
-        version = "1.0.1"
+        version = "1.1.0"
 
     def ready(self):
         from . import signals  # NOQA
