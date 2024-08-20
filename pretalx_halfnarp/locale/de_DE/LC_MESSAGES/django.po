@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-04 10:10+0200\n"
+"POT-Creation-Date: 2024-08-20 13:08+0200\n"
 "PO-Revision-Date: 2023-05-23 12:00+0200\n"
 "Last-Translator: Franziska Kunsmann <fkunsmann@seibert-media.net>\n"
 "Language-Team: Videotechnik <videotechnik@seibert-media.net>\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: apps.py:10
+#: apps.py:12
 msgid "Pretalx Halfnarp"
-msgstr ""
+msgstr "Pretalx-Halfnarp"
 
-#: apps.py:13
+#: apps.py:15
 #, fuzzy
 #| msgid ""
 #| "Pretalx-Halfnarp is a Plugin that helps you to estimate the interest in "
@@ -89,7 +89,7 @@ msgstr ""
 
 #: templates/pretalx_halfnarp/frontend.html:40
 msgid "Preferred"
-msgstr ""
+msgstr "Ausgewählt"
 
 #: templates/pretalx_halfnarp/frontend.html:49
 #: templates/pretalx_halfnarp/organiser.html:66
