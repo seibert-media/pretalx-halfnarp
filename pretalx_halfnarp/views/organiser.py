@@ -2,7 +2,7 @@ from collections import Counter
 
 from django.views.generic import FormView
 from django_context_decorator import context
-from pretalx.common.mixins.views import EventPermissionRequired
+from pretalx.common.views.mixins import EventPermissionRequired
 from pretalx.submission.models import Submission
 
 from pretalx_halfnarp.forms import HalfnarpSettingsForm
