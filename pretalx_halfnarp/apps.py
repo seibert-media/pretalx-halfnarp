@@ -1,6 +1,8 @@
 from django.apps import AppConfig
 from django.utils.translation import gettext_lazy
 
+from pretalx_halfnarp import __version__
+
 
 class PluginApp(AppConfig):
     name = "pretalx_halfnarp"
@@ -18,7 +20,7 @@ class PluginApp(AppConfig):
             "Halfnarp is an anagram of Fahrplan, a not-yet sorted Fahrplan"
         )
         visible = True
-        version = "1.1.0"
+        version = __version__
 
     def ready(self):
         from . import signals  # NOQA
