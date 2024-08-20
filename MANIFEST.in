@@ -2,5 +2,6 @@ recursive-include pretalx_halfnarp/static *
 recursive-include pretalx_halfnarp/templates *
 exclude pretalx_halfnarp/locale/django.pot
 recursive-include pretalx_halfnarp/locale *
-recursive-include pretalx_halfnarp/ *.py
+recursive-include pretalx_halfnarp *.py
 include Makefile
+recursive-exclude images *.png
