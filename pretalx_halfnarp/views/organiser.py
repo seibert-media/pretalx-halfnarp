@@ -16,7 +16,7 @@ class OrganiserView(EventPermissionRequired, FormView):
 
     @context
     def num_preferences(self):
-        return Preference.objects.count()
+        return Preference.objects.filter(event=self.request.event).count()
 
     @context
     def most_preferred_submissions(self):
