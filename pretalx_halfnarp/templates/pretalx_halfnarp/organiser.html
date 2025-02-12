@@ -16,8 +16,6 @@
     {% compress js %}
         <script defer src="{% static "vendored/moment-with-locales.js" %}"></script>
         <script defer src="{% static "vendored/moment-timezone-with-data-10-year-range.js" %}"></script>
-        <script defer src="{% static "vendored/datetimepicker/bootstrap-datetimepicker.js" %}"></script>
-        <script defer src="{% static "orga/js/datetimepicker.js" %}"></script>
     {% endcompress %}
 {% endblock %}
 
@@ -29,27 +27,9 @@
             {% translate "Link to Vote-Page" %}
         </a>
     </div>
-    <form method="post">
-        {% csrf_token %}
-        <fieldset>
-            <legend>{% translate "Settings" %}</legend>
-
-            {% bootstrap_form_errors form %}
-
-            {% bootstrap_field form.halfnarp_allow_voting_until layout='event' %}
-        </fieldset>
-        <div class="submit-group panel">
-            <span>
-                <button type="submit" class="btn btn-success btn-lg">
-                    <i class="fa fa-check"></i>
-                    {% translate "Save" %}
-                </button>
-            </span>
-        </div>
-    </form>
     <p>
         {% blocktranslate trimmed %}
-            The following Submissions have been voted the most (in descending order).
+            The following Submissions have been voted the most (in descending order):
         {% endblocktranslate %}
     </p>
     <div class="submissions">

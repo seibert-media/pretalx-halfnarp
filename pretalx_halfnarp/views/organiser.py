@@ -1,6 +1,7 @@
 from collections import Counter
 
-from django.views.generic import FormView
+from django.urls import reverse
+from django.views.generic import FormView, TemplateView
 from django_context_decorator import context
 from pretalx.common.views.mixins import EventPermissionRequired
 from pretalx.submission.models import Submission
@@ -9,8 +10,34 @@ from pretalx_halfnarp.forms import HalfnarpSettingsForm
 from pretalx_halfnarp.models import Preference
 
 
-class OrganiserView(EventPermissionRequired, FormView):
+class HalfnarpSettingsView(EventPermissionRequired, FormView):
+    template_name = "pretalx_halfnarp/settings.html"
+    permission_required = "orga.change_settings"
     form_class = HalfnarpSettingsForm
+
+    def get_success_url(self) -> str:
+        return reverse(
+            "plugins:pretalx_halfnarp:settings",
+            kwargs={
+                "event": self.request.event.slug,
+            },
+        )
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        return {
+            "obj": self.request.event,
+            "attribute_name": "settings",
+            "locales": self.request.event.locales,
+            **kwargs,
+        }
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+
+class OrganiserView(EventPermissionRequired, TemplateView):
     permission_required = "orga.view_submissions"
     template_name = "pretalx_halfnarp/organiser.html"
 
@@ -38,21 +65,5 @@ class OrganiserView(EventPermissionRequired, FormView):
     def most_correlated_submissions(self):
         return []
 
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        return {
-            "obj": self.request.event,
-            "attribute_name": "settings",
-            "locales": self.request.event.locales,
-            **kwargs,
-        }
-
     def get_object(self):
         return self.request.event
-
-    def get_success_url(self):
-        return self.request.path

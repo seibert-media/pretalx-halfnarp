@@ -19,4 +19,9 @@ urlpatterns = [
         organiser.OrganiserView.as_view(),
         name="organiser",
     ),
+    re_path(
+        f"^orga/event/(?P<event>[{SLUG_CHARS}]+)/settings/p/halfnarp/$",
+        organiser.HalfnarpSettingsView.as_view(),
+        name="settings",
+    ),
 ]
