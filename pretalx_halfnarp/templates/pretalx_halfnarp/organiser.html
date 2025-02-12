@@ -1,10 +1,8 @@
-{% extends "orga/cfp/base.html" %}
-{% load bootstrap4 %}
+{% extends "orga/base.html" %}
 {% load compress %}
 {% load i18n %}
 {% load rules %}
 {% load static %}
-{% load url_replace %}
 
 {% block stylesheets %}
     {% compress css %}
@@ -47,6 +45,8 @@
                     </div>
                 </div>
             </div>
+        {% empty %}
+          {% translate "There have been no votes yet." %}
         {% endfor %}
     </div>
 {% endblock %}
