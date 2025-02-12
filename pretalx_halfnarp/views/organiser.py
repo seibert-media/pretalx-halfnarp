@@ -52,8 +52,9 @@ class OrganiserView(EventPermissionRequired, TemplateView):
     def most_preferred_submissions(self):
         submissions_by_id = {
             submission.id: submission
-            for submission in
-            Submission.objects.filter(event=self.request.event).prefetch_related("speakers")
+            for submission in Submission.objects.filter(
+                event=self.request.event
+            ).prefetch_related("speakers")
         }
         submission_id_counter = Counter()
         for preference in Preference.objects.filter(event=self.request.event):

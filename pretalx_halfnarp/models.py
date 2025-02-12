@@ -21,5 +21,6 @@ class Preference(models.Model):
 
         return []
 
-    def set_preferred_submission_ids(self, submission_ids):
+    @preferred_submission_ids.setter
+    def preferred_submission_ids(self, submission_ids):
         self.preferred_submissions = ",".join([str(i) for i in submission_ids])

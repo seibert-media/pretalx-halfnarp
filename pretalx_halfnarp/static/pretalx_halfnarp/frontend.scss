@@ -1,4 +1,4 @@
-$transitionSpeed: .5s;
+$transitionSpeed: 0.5s;
 
 .submissions .submission {
   display: block;
@@ -15,7 +15,7 @@ $transitionSpeed: .5s;
   &.preferred {
     margin-left: 2rem;
     margin-right: 2rem;
-    background: rgba(0, 0, 0, .05);
+    background: rgba(0, 0, 0, 0.05);
 
     .preferred-icon {
       opacity: 1;
@@ -44,14 +44,15 @@ $transitionSpeed: .5s;
     margin-top: 0;
   }
 
-  .headline, .footer {
+  .headline,
+  .footer {
     display: flex;
 
-    .title, .track {
+    .title,
+    .track {
       flex-grow: 1;
     }
   }
-
 
   .description {
     display: none;

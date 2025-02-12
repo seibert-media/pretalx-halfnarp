@@ -1,8 +1,7 @@
 from django.dispatch import receiver
 from django.urls import resolve, reverse
 from django.utils.translation import gettext_lazy as _
-from pretalx.orga.signals import nav_event
-from pretalx.orga.signals import nav_event_settings
+from pretalx.orga.signals import nav_event, nav_event_settings
 
 
 @receiver(nav_event, dispatch_uid="halfnarp")
