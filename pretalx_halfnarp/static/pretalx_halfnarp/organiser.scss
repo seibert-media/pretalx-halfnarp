@@ -9,12 +9,13 @@
 .submissions .submission {
   max-width: 50rem;
 
-  .headline, .footer {
+  .headline,
+  .footer {
     display: flex;
 
-    .title, .track {
+    .title,
+    .track {
       flex-grow: 1;
     }
   }
-
 }

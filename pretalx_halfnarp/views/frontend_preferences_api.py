@@ -46,7 +46,7 @@ class FrontendMyPreferencesApi(EventPageMixin, APIView):
             preference.hash = halfnarp_hash
             preference.event = self.request.event
 
-        preference.set_preferred_submission_ids(request.data["preferred_submissions"])
+        preference.preferred_submission_ids = request.data["preferred_submissions"]
         preference.save()
 
         return Response(status=204)

@@ -16,11 +16,12 @@ class PluginApp(AppConfig):
             "room-sizes accordingly by scheduling the most requested submissions into the larger rooms. It can "
             "also help you avoid overlaps by correlating submissions that are preferred by the same people so "
             "that you can plan them at different times. "
-            ""
-            "Halfnarp is an anagram of Fahrplan, a not-yet sorted Fahrplan"
+            "\n"
+            "Halfnarp is an anagram of Fahrplan, a not-yet sorted Fahrplan."
         )
         visible = True
         version = __version__
+        category = "FEATURE"
 
     def ready(self):
         from . import signals  # NOQA

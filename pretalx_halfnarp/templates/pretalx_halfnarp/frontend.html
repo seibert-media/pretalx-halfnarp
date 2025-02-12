@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/x-scss" href="{% static "pretalx_halfnarp/frontend.scss" %}"/>
     {% endcompress %}
     {% compress js %}
+        <script defer src="{% static "js/jquery.js" %}"></script>
         <script defer src="{% static "pretalx_halfnarp/frontend.js" %}"></script>
     {% endcompress %}
 {% endblock %}
