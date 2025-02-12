@@ -1,6 +1,7 @@
 from collections import Counter
 
 from django.urls import reverse
+from django.utils.functional import cached_property
 from django.views.generic import FormView, TemplateView
 from django_context_decorator import context
 from pretalx.common.views.mixins import EventPermissionRequired
@@ -42,19 +43,21 @@ class OrganiserView(EventPermissionRequired, TemplateView):
     template_name = "pretalx_halfnarp/organiser.html"
 
     @context
+    @cached_property
     def num_preferences(self):
         return Preference.objects.filter(event=self.request.event).count()
 
     @context
+    @cached_property
     def most_preferred_submissions(self):
         submissions_by_id = {
             submission.id: submission
-            for submission in Submission.objects.filter(event=self.request.event)
+            for submission in
+            Submission.objects.filter(event=self.request.event).prefetch_related("speakers")
         }
         submission_id_counter = Counter()
         for preference in Preference.objects.filter(event=self.request.event):
-            for submission_id in preference.preferred_submission_ids:
-                submission_id_counter[submission_id] += 1
+            submission_id_counter.update(preference.preferred_submission_ids)
 
         return [
             {"submission": submissions_by_id[id], "count": count}
@@ -62,6 +65,7 @@ class OrganiserView(EventPermissionRequired, TemplateView):
         ]
 
     @context
+    @cached_property
     def most_correlated_submissions(self):
         return []
 
