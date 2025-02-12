@@ -1,4 +1,5 @@
 from django.db import models
+from django_scopes import ScopedManager
 
 
 class Preference(models.Model):
@@ -8,8 +9,10 @@ class Preference(models.Model):
     event = models.ForeignKey(to="event.Event", on_delete=models.CASCADE)
     preferred_submissions = models.TextField()
 
+    objects = ScopedManager(event="event")
+
     class Meta:
-        unique_together = [["hash", "event"]]
+        unique_together = (("hash", "event"),)
 
     @property
     def preferred_submission_ids(self):
