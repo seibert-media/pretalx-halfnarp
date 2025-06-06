@@ -7,7 +7,7 @@ from pretalx.orga.signals import nav_event, nav_event_settings
 @receiver(nav_event, dispatch_uid="halfnarp")
 def navbar_info_settings(sender, request, **kwargs):
     url = resolve(request.path_info)
-    if not request.user.has_perm("orga.view_submissions", request.event):
+    if not request.user.has_perm("submission.orga_list_submission", request.event):
         return []
 
     return [
@@ -30,7 +30,7 @@ def navbar_info_settings(sender, request, **kwargs):
 def navbar_info(sender, request, **kwargs):
     url = resolve(request.path_info)
 
-    if not request.user.has_perm("orga.change_settings", request.event):
+    if not request.user.has_perm("event.update_event", request.event):
         return []
 
     return [

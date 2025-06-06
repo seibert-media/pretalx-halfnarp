@@ -13,7 +13,7 @@ from pretalx_halfnarp.models import Preference
 
 class HalfnarpSettingsView(EventPermissionRequired, FormView):
     template_name = "pretalx_halfnarp/settings.html"
-    permission_required = "orga.change_settings"
+    permission_required = "event.update_event"
     form_class = HalfnarpSettingsForm
 
     def get_success_url(self) -> str:
@@ -39,7 +39,7 @@ class HalfnarpSettingsView(EventPermissionRequired, FormView):
 
 
 class OrganiserView(EventPermissionRequired, TemplateView):
-    permission_required = "orga.view_submissions"
+    permission_required = "submission.orga_list_submission"
     template_name = "pretalx_halfnarp/organiser.html"
 
     @context
