@@ -62,3 +62,5 @@ target/
 .ipynb_checkpoints
 
 pretalx_halfnarp/locale/**/*.mo
+
+.direnv/
