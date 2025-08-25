@@ -26,16 +26,16 @@
     {% if voting_is_enabled %}
         <p>
             {% blocktranslate trimmed %}
-                In the list below you will find all the talks we have accepted for the event.
-                By marking the talks that seem to be the most interesting for you personally, you will help us to choose rooms
-                for the talks that match the interest.
+                In the list below you will find all the submissions we have accepted for the event.
+                By marking the submissions that seem to be the most interesting for you personally, you will help us to choose rooms
+                for the submissions that match the interest.
             {% endblocktranslate %}
         </p>
 
         <div class="submissions">
             {% for submission in submissions %}
 
-                <div class="submission{% if submission.id in preferred_talks %} preferred{% endif %}" style="--track-color: {{submission.track.color}}" data-id="{{submission.id}}">
+                <div class="submission{% if submission.id in preferred_submissions %} preferred{% endif %}" style="--track-color: {{submission.track.color}}" data-id="{{submission.id}}">
                     <div class="headline">
                         <h2 class="title">{{submission.title}}</h2>
                         <div class="preferred-icon" title="{% translate "Preferred" %}">

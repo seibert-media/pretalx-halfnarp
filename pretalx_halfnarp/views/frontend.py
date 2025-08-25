@@ -44,7 +44,7 @@ class FrontendView(EventPageMixin, TemplateView):
         return submissions
 
     @context
-    def preferred_talks(self):
+    def preferred_submissions(self):
         try:
             preference = Preference.objects.get(
                 hash=self.halfnarp_hash, event=self.request.event
