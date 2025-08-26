@@ -35,7 +35,7 @@
         <div class="submissions">
             {% for submission in submissions %}
 
-                <div class="submission{% if submission.id in preferred_submissions %} preferred{% endif %}" style="--track-color: {{submission.track.color}}" data-id="{{submission.id}}">
+                <div class="submission{% if submission.id in preferred_submissions %} preferred{% endif %}"{% if submission.track %} style="--track-color: {{submission.track.color}}"{% endif %} data-id="{{submission.id}}">
                     <div class="headline">
                         <h2 class="title">{{submission.title}}</h2>
                         <div class="preferred-icon" title="{% translate "Preferred" %}">
@@ -46,7 +46,13 @@
                     <p class="speakers">{{submission.display_speaker_names}}</p>
 
                     <div class="footer">
-                        <div class="track">Track: <span class="track">{{submission.track}}</span></div>
+                        <div class="track">
+                            {% if submission.track %}
+                                Track: <span class="track">{{submission.track}}</span>
+                            {% else %}
+                                &nbsp;
+                            {% endif %}
+                        </div>
                         <a href="{{submission.urls.review}}" target="_blank">{% translate "More info" %}</a>
                     </div>
                 </div>
