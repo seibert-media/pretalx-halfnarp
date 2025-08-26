@@ -42,8 +42,12 @@
                             <i class="fa fa-star" aria-hidden="true"></i>
                         </div>
                     </div>
-                    <p class="abstract">{{submission.abstract}}</p>
-                    <p class="speakers">{{submission.display_speaker_names}}</p>
+                    {% if submission.abstract %}
+                        <p class="abstract">{{submission.abstract}}</p>
+                    {% endif %}
+                    {% if submission.speakers %}
+                        <p class="speakers">{{submission.display_speaker_names}}</p>
+                    {% endif %}
 
                     <div class="footer">
                         <div class="track">
