@@ -1,20 +1,10 @@
 {% extends "orga/base.html" %}
-{% load compress %}
 {% load i18n %}
 {% load rules %}
 {% load static %}
 
 {% block stylesheets %}
-    {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static "pretalx_halfnarp/organiser.scss" %}"/>
-    {% endcompress %}
-{% endblock %}
-
-{% block scripts %}
-    {% compress js %}
-        <script defer src="{% static "vendored/moment-with-locales.js" %}"></script>
-        <script defer src="{% static "vendored/moment-timezone-with-data-10-year-range.js" %}"></script>
-    {% endcompress %}
+    <link rel="stylesheet" type="text/css" href="{% static "pretalx_halfnarp/organiser.css" %}"/>
 {% endblock %}
 
 {% block content %}
