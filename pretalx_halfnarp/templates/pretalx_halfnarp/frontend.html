@@ -1,18 +1,13 @@
 {% extends "common/base.html" %}
 {% load i18n %}
-{% load compress %}
 {% load static %}
 
 {% block title %}{% translate "Halfnarp" %} ::{% endblock %}
 
 {% block custom_header %}
-    {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static "pretalx_halfnarp/frontend.scss" %}"/>
-    {% endcompress %}
-    {% compress js %}
-        <script defer src="{% static "js/jquery.js" %}"></script>
-        <script defer src="{% static "pretalx_halfnarp/frontend.js" %}"></script>
-    {% endcompress %}
+    <link rel="stylesheet" type="text/css" href="{% static "pretalx_halfnarp/frontend.css" %}"/>
+    <script defer src="{% static "js/jquery.js" %}"></script>
+    <script defer src="{% static "pretalx_halfnarp/frontend.js" %}"></script>
 {% endblock %}
 
 {% block content %}

@@ -1,6 +1,6 @@
-$transitionSpeed: 0.5s;
 
 .submissions .submission {
+  --transition-speed: 0.5s;
   display: block;
 
   margin-bottom: 1rem;
@@ -10,7 +10,7 @@ $transitionSpeed: 0.5s;
 
   cursor: pointer;
 
-  transition: margin $transitionSpeed;
+  transition: margin var(--transition-speed);
 
   &.preferred {
     margin-left: 2rem;
@@ -28,10 +28,10 @@ $transitionSpeed: 0.5s;
 
   .preferred-icon {
     > i {
-      transition: transform $transitionSpeed;
+      transition: transform var(--transition-speed);
     }
 
-    transition: opacity $transitionSpeed;
+    transition: opacity var(--transition-speed);
     opacity: 0;
     color: #e0c840;
   }
