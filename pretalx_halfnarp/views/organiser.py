@@ -61,8 +61,9 @@ class OrganiserView(EventPermissionRequired, TemplateView):
             submission_id_counter.update(preference.preferred_submission_ids)
 
         return [
-            {"submission": submissions_by_id[id], "count": count}
-            for id, count in submission_id_counter.most_common()
+            {"submission": submissions_by_id[submission_id], "count": count}
+            for submission_id, count in submission_id_counter.most_common()
+            if submission_id in submissions_by_id  # submission might have been deleted
         ]
 
     @context
