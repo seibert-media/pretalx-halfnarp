@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     submissionsContainers.forEach(container => {
         container.addEventListener('click', function (e) {
+            // Ensure we don't trigger the favourite state if someone just
+            // clicked the "more info" link
+            if (e.target.closest('a')) {
+                return;
+            }
+
             const submissionEl = e.target.closest('.submission');
 
             if (submissionEl && container.contains(submissionEl)) {
