@@ -1,3 +1,15 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json"
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "packageRules": [
+    {
+      "matchPackageNames": ["/^actions\//"],
+      "groupName": "actions",
+      "automerge": true,
+      "automergeStrategy": "fast-forward"
+    },
+    {
+      "matchPackageNames": ["/^jsonschema/"],
+      "groupName": "jsonschema"
+    }
+  ]
 }
