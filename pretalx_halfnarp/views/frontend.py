@@ -1,8 +1,8 @@
+import contextlib
 import random
 import secrets
-from datetime import timedelta
+from datetime import datetime, timedelta
 
-import pytz
 from django.utils import timezone
 from django.views.generic import TemplateView
 from django_context_decorator import context
@@ -56,21 +56,15 @@ class FrontendView(EventPageMixin, TemplateView):
     @context
     def voting_is_enabled(self):
         until = None
-        try:
+        with contextlib.suppress(AttributeError):
             until = self.request.event.settings.halfnarp_allow_voting_until
-        except AttributeError:
-            pass
         if until is None:
-            if not self.request.event.current_schedule:
-                return True
-        else:
-            until = timezone.datetime.strptime(until, "%Y-%m-%d").astimezone(
-                pytz.timezone(self.request.event.timezone)
-            )
+            return not self.request.event.current_schedule
 
-            timezone.activate(pytz.timezone(self.request.event.timezone))
-            now = timezone.localtime()
-
-            if now < until:
-                return True
-        return False
+        # `until` is a date; voting is allowed through the end of the selected
+        # day, interpreted in the event's own timezone.
+        deadline = timezone.make_aware(
+            datetime.combine(until + timedelta(days=1), datetime.min.time()),
+            self.request.event.tz,
+        )
+        return timezone.now() < deadline
