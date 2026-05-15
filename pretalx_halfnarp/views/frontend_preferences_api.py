@@ -17,10 +17,11 @@ class FrontendMyPreferencesApi(EventPageMixin, APIView):
         if not halfnarp_hash:
             return Response(status=404)
 
-        preferences = Preference.objects.get(
-            hash=halfnarp_hash, event=self.request.event
-        )
-        if not preferences:
+        try:
+            preferences = Preference.objects.get(
+                hash=halfnarp_hash, event=self.request.event
+            )
+        except Preference.DoesNotExist:
             return Response(status=404)
 
         return JsonResponse(
