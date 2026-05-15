@@ -37,7 +37,7 @@ class FrontendMyPreferencesApi(EventPageMixin, APIView):
 
         halfnarp_hash = request.COOKIES.get(HASH_COOKIE, None)
         if not halfnarp_hash:
-            return Response(400)
+            return Response(status=400)
 
         try:
             preference = Preference.objects.get(
