@@ -24,7 +24,8 @@ class FrontendMyPreferencesApi(EventPageMixin, APIView):
             return Response(status=404)
 
         return JsonResponse(
-            {"preferred_submissions": preferences.preferred_submission_ids}, safe=False
+            {"preferred_submissions": list(preferences.preferred_submission_ids)},
+            safe=False,
         )
 
     def post(self, request, event, *args, **kwargs):
