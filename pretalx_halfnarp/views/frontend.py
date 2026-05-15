@@ -22,7 +22,7 @@ class FrontendView(EventPageMixin, TemplateView):
         if not self.halfnarp_hash:
             self.halfnarp_hash = secrets.token_hex(32)
 
-        response = super().get(request, args, kwargs)
+        response = super().get(request, *args, **kwargs)
         response.set_cookie(
             HASH_COOKIE,
             self.halfnarp_hash,
