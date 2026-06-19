@@ -25,6 +25,15 @@ dependencies = [
     "jsonschema-specifications==2025.9.1",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "djhtml",
+    "pytest",
+    "pytest-cov",
+    "pytest-django",
+    "ruff",
+]
+
 [project.entry-points."pretalx.plugin"]
 pretalx_halfnarp = "pretalx_halfnarp:PretalxPluginMeta"
 
@@ -48,3 +57,27 @@ version = {attr = "pretalx_halfnarp.__version__"}
 [tool.setuptools.packages.find]
 include = ["pretalx*"]
 namespaces = false
+
+[tool.check-manifest]
+ignore = [".*", "tests/*", "justfile"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "pretalx.common.settings.test_settings"
+django_find_project = false
+addopts = "--cov=pretalx_halfnarp --cov-report=term-missing:skip-covered --cov-config=pyproject.toml"
+
+[tool.coverage.run]
+branch = true
+relative_files = true
+source = ["pretalx_halfnarp"]
+omit = ["*/migrations/*", "*/urls.py", "*/tests/*"]
+
+[tool.coverage.report]
+exclude_also = [
+  "def __repr__",
+  "def __str__",
+  "if settings.DEBUG",
+  "NOQA",
+  "noqa",
+  "NotImplementedError",
+]
